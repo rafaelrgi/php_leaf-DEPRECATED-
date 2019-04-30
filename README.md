@@ -7,6 +7,6 @@ To use it, just take the `/src/` folder as a starting point for your code, keepi
 
 
 **TODO:**
-[ ] Features
-[ ] Samples
-[ ] How-tos
+- [ ] Features
+- [ ] Samples
+- [ ] How-tos
