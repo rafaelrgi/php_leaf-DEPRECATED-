@@ -1,7 +1,7 @@
 # php_leaf
 ###### Welcome to the Leaf!
   
-**Leaf** is a Light, Easy, Agile/Adaptable, Fast PHP MVC framework, aiming to provide a very thin foundation for PHP web sites and web applications.
+**Leaf** is a Light, Easy, Agile/Adaptable, Fast PHP MVC framework, aiming to provide a very thin (but helpfull) foundation for PHP web sites and web applications.
   
 To use it, just take the `/src/` folder as a starting point for your code, keeping the folder `/src/app/systems/` untouched.
   
@@ -23,8 +23,9 @@ You don't need to set routes, **Leaf** will automatically route all the requests
   
   
 ## Automatic Models
-Every controller will automatically receive an Model instance, accessible through the property "Model":
-  ```php  <?php
+Every controller will automatically receive an Model instance (if the corresponding model exists), accessible through the property "Model":
+  ```php
+  <?php
   $this->Model->...
   ```
    
