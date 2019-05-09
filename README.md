@@ -6,12 +6,6 @@
 To use it, just take the `/src/` folder as a starting point for your code, keeping the folder `/src/app/systems/` untouched.
   
   
-**TODO:**
-- [ ] Features
-- [ ] Samples
-- [ ] How-tos
-  
-  
   
    
 ## Automatic Routes
@@ -30,8 +24,8 @@ Every controller will automatically receive an Model instance (if the correspond
   ```
    
   
-## Automatic "POST record object"     *(TODO: think about a bettter title)*
+## Automatic "POST record object"
 On Every POST request the Controller will automatically create an object with the contents of the POST data (`$_POST`), accessible through the property "Record":
   ```php  <?php
-  $this->Record->...
+  $this->record->...
   ```
