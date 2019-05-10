@@ -171,7 +171,7 @@ class AppBase {//static!!!!
     static::$IsSite    = true;
     static::$AuthToken = null;
     static::$Ctrl      = null;
-    static::$Action      = null;
+    static::$Action    = null;
     static::$Params    = [];
 
     //Aplicativo

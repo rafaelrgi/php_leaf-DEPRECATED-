@@ -67,21 +67,8 @@ abstract class Controller extends Obj {
       return $this->Json($res);
     }
 
-    ob_start();
-    include_once _APP_DIR_ . '/system/view.php';
-
     $view_name = strtolower($view_name);
-
-    $hf = (! App::IsAjax() && !$no_header && ! $this->IsPopup && $view_name != 'header' && $view_name != 'footer');
-    if ($hf)
-      $this->View('header');
-
     include _APP_DIR_ . "/view/$view_name.php";
-
-    if ($hf)
-      $this->View('footer');
-
-    ob_end_flush();
     return true;
   }
 

@@ -289,6 +289,9 @@ if (! defined('_Db_'))
 
 
     public static function createRecord($tbl_or_select) {
+      return new Obj();
+      /*
+      UNDONE: remove Order by
       static::tableOrSelect($tbl_or_select);
       $qry = static::query(static::buildSelect($tbl_or_select, "1=0"));
       $max = $qry->columnCount();
@@ -300,6 +303,7 @@ if (! defined('_Db_'))
         $obj->{$s} = null;
       }
       return $obj;
+      */
     }
 
 
