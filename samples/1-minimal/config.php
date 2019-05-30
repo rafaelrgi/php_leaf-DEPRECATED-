@@ -5,8 +5,8 @@ abstract class Config
   //----------- CONFIG:
   const Path = '/leaf/';
 
-  const Db_Server = "localhost";
-  const Db_User = "root";
+  const Db_Server = "xxx";
+  const Db_User = "xxx";
   const Db_Pass = "xxx";
   const Db_Name = "xxx";
   //-----------------------|

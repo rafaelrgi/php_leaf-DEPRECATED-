@@ -61,14 +61,29 @@ abstract class Controller extends Obj {
     return $o;
   }
 
-  protected function View($view_name, $no_header=false) {
-    if (! App::IsSite() || get($_SERVER, "CONTENT_TYPE") === "application/json") {
-      $res = $this->Lista ?: $this->record;
-      return $this->Json($res);
+  protected function view($view_name, $no_header=false) {
+    if (get($_GET, 'html') != '1' ) {
+      if (! App::isSite() || get($_SERVER, "CONTENT_TYPE") === "application/json") {
+        $res = $this->Lista ?: $this->Reg;
+        return $this->Json($res);
+      }
     }
 
+    ob_start();
+    include _APP_DIR_ . '/system/view.php';
+
     $view_name = strtolower($view_name);
-    include _APP_DIR_ . "/view/$view_name.php";
+
+    $hf = (! App::isAjax() && !$no_header && ! $this->IsPopup && $view_name != 'header' && $view_name != 'footer');
+    if ($hf)
+      $this->view('header');
+
+    include App::viewPath($view_name);
+
+    if ($hf)
+      $this->view('footer');
+
+    ob_end_flush();
     return true;
   }
 
@@ -195,7 +210,7 @@ abstract class Controller extends Obj {
     return $this->Model;
   }
 
-  public function Call($action, $params=null) {
+  public function Delegate($action, $params=null) {
     //se não existe a ação, executa ação padrão
     if (! Method_exists($this, $action)) {
       $params = [$action];

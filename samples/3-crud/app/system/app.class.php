@@ -58,9 +58,8 @@ class AppBase {//static!!!!
   public static function logExtraInfo() { return ""; }
   public static function logSuffix() { return ""; }
 
-  public static function run($customViews=false) {
+  public static function run() {
     define("_APP_DIR_", dirname(__DIR__) . DIRECTORY_SEPARATOR);
-    static::$CustomViews = $customViews;
 
     spl_autoload_register(['App', 'AutoLoad']);
 
@@ -82,12 +81,8 @@ class AppBase {//static!!!!
   }
 
   public static function viewPath($view_name) {
-    $view_name = strtolower(removeAcentos(str_replace(' ', '_', basename($view_name, ".php")))) . ".php";
-    if (static::$CustomViews) {
-      $vw = dirname(_APP_DIR_) . "/custom/$view_name";
-      if (is_file($vw))
-        return $vw;
-    }
+    //$view_name = strtolower(removeAcentos(str_replace(' ', '_', basename($view_name, ".php")))) . ".php";
+    $view_name = strtolower(basename($view_name, ".php")) . ".php";
     return _APP_DIR_ . "view/$view_name";
   }
 
@@ -156,7 +151,7 @@ class AppBase {//static!!!!
     $ctrl = new static::$Ctrl();
     //chama a ação no controller
     try {
-      $ctrl->Call(static::$Action, static::$Params);
+      $ctrl->Delegate(static::$Action, static::$Params);
       if (! static::isSite()) {
         session_unset();
         //session_destroy()
@@ -240,5 +235,4 @@ class AppBase {//static!!!!
   protected static $Action;
   protected static $Params;
   protected static $Url;
-  protected static $CustomViews;
 }
