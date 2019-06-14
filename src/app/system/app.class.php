@@ -81,8 +81,7 @@ class AppBase {//static!!!!
   }
 
   public static function viewPath($view_name) {
-    //$view_name = strtolower(removeAcentos(str_replace(' ', '_', basename($view_name, ".php")))) . ".php";
-    $view_name = strtolower(basename($view_name, ".php")) . ".php";
+    $view_name = strtolower(str_replace(' ', '_', basename($view_name, ".php"))) . ".php";
     return _APP_DIR_ . "view/$view_name";
   }
 

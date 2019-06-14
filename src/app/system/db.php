@@ -447,8 +447,16 @@ if (! defined('_Db_'))
                   $s = "{$col} {$val}";
                   unset($params[$key]);
                 }
-                else
+                else {
+                  $i = strpos($key, '.');
+                  if ($i) {
+                    $s = substr($key, $i + 1);
+                    $params[$s] = $params[$key];
+                    unset($params[$key]);
+                    $key = $s;
+                  }
                   $s = "{$col}=:{$key}";
+                }
                 $where .= ($where? " and " : " ") . "({$s}) ";
               }
             }
